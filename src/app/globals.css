@@ -25,12 +25,12 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0f0f0f;
+    --background: #1a1a1a;
     --foreground: #e5e5e5;
-    --card: #1a1a1a;
+    --card: #2a2a2a;
     --card-foreground: #e5e5e5;
-    --border: #262626;
-    --muted: #1a1a1a;
+    --border: #404040;
+    --muted: #2a2a2a;
     --muted-foreground: #a3a3a3;
   }
 }
