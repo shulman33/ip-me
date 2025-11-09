@@ -56,23 +56,23 @@
 
 ### Implementation for User Story 1
 
-- [ ] T018 [US1] Create LocationMap component skeleton in src/components/features/map/location-map.tsx with 'use client' directive
-- [ ] T019 [US1] Implement map initialization logic using useEffect in location-map.tsx with Mapbox GL JS v3.x
-- [ ] T020 [US1] Add coordinate validation and WebGL support checks at component mount in location-map.tsx
-- [ ] T021 [US1] Implement map instance creation with dark-v11 style and access token in location-map.tsx
-- [ ] T022 [US1] Create custom marker element with green color (#00ff88) and 32px circular shape in location-map.tsx
-- [ ] T023 [US1] Add glow pulse animation to marker (respecting prefers-reduced-motion) in location-map.tsx
-- [ ] T024 [US1] Add mapboxgl.Marker instance to map at user coordinates in location-map.tsx
-- [ ] T025 [US1] Implement NavigationControl (zoom controls only, no compass) positioned bottom-right in location-map.tsx
-- [ ] T026 [US1] Add map load event handler to update component state in location-map.tsx
-- [ ] T027 [US1] Implement window resize handler with map.resize() in location-map.tsx
-- [ ] T028 [US1] Add cleanup logic in useEffect return (remove marker and map instance) in location-map.tsx
-- [ ] T029 [US1] Apply responsive container styling with Tailwind classes (full-width mobile, 60% desktop, 300-400px height) in location-map.tsx
-- [ ] T030 [US1] Add ARIA labels for accessibility (role="region", aria-label with coordinates) in location-map.tsx
-- [ ] T031 [US1] Create barrel export in src/components/features/map/index.ts
-- [ ] T032 [US1] Integrate LocationMap with dynamic import in src/app/page.tsx (ssr: false, loading: MapSkeleton)
-- [ ] T033 [US1] Add conditional rendering in page.tsx to show map only when latitude/longitude exist
-- [ ] T034 [US1] Position map component below existing GeolocationPrimaryInfo and GeolocationSecondaryInfo components in page.tsx
+- [X] T018 [US1] Create LocationMap component skeleton in src/components/features/map/location-map.tsx with 'use client' directive
+- [X] T019 [US1] Implement map initialization logic using useEffect in location-map.tsx with Mapbox GL JS v3.x
+- [X] T020 [US1] Add coordinate validation and WebGL support checks at component mount in location-map.tsx
+- [X] T021 [US1] Implement map instance creation with dark-v11 style and access token in location-map.tsx
+- [X] T022 [US1] Create custom marker element with green color (#00ff88) and 32px circular shape in location-map.tsx
+- [X] T023 [US1] Add glow pulse animation to marker (respecting prefers-reduced-motion) in location-map.tsx
+- [X] T024 [US1] Add mapboxgl.Marker instance to map at user coordinates in location-map.tsx
+- [X] T025 [US1] Implement NavigationControl (zoom controls only, no compass) positioned bottom-right in location-map.tsx
+- [X] T026 [US1] Add map load event handler to update component state in location-map.tsx
+- [X] T027 [US1] Implement window resize handler with map.resize() in location-map.tsx
+- [X] T028 [US1] Add cleanup logic in useEffect return (remove marker and map instance) in location-map.tsx
+- [X] T029 [US1] Apply responsive container styling with Tailwind classes (full-width mobile, 60% desktop, 300-400px height) in location-map.tsx
+- [X] T030 [US1] Add ARIA labels for accessibility (role="region", aria-label with coordinates) in location-map.tsx
+- [X] T031 [US1] Create barrel export in src/components/features/map/index.ts
+- [X] T032 [US1] Integrate LocationMap with dynamic import in src/components/features/geolocation/geolocation-card.tsx (ssr: false, loading: MapSkeleton)
+- [X] T033 [US1] Add conditional rendering in geolocation-card.tsx to show map only when latitude/longitude exist
+- [X] T034 [US1] Position map component below existing GeolocationPrimaryInfo and GeolocationSecondaryInfo components in geolocation-card.tsx
 
 **Checkpoint**: At this point, User Story 1 should be fully functional - map displays with marker, zoom/pan work, responsive design adapts to viewport
 
@@ -86,15 +86,15 @@
 
 ### Implementation for User Story 2
 
-- [ ] T035 [US2] Add map error event handler in location-map.tsx to catch tile load failures
-- [ ] T036 [US2] Implement error state management with useState in location-map.tsx
-- [ ] T037 [US2] Add conditional rendering to show MapError component when error state is set in location-map.tsx
-- [ ] T038 [US2] Add error callback prop (onMapError) support in location-map.tsx
-- [ ] T039 [US2] Test and verify error handling for missing coordinates scenario
-- [ ] T040 [US2] Test and verify error handling for invalid coordinates (out of range) scenario
-- [ ] T041 [US2] Test and verify error handling for WebGL unsupported scenario
-- [ ] T042 [US2] Test and verify error handling for map service unavailable scenario
-- [ ] T043 [US2] Verify MapError component displays consistently with dark theme styling
+- [X] T035 [US2] Add map error event handler in location-map.tsx to catch tile load failures
+- [X] T036 [US2] Implement error state management with useState in location-map.tsx
+- [X] T037 [US2] Add conditional rendering to show MapError component when error state is set in location-map.tsx
+- [X] T038 [US2] Add error callback prop (onMapError) support in location-map.tsx
+- [X] T039 [US2] Test and verify error handling for missing coordinates scenario
+- [X] T040 [US2] Test and verify error handling for invalid coordinates (out of range) scenario
+- [X] T041 [US2] Test and verify error handling for WebGL unsupported scenario
+- [X] T042 [US2] Test and verify error handling for map service unavailable scenario
+- [X] T043 [US2] Verify MapError component displays consistently with dark theme styling
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently - map shows when data valid, error message when data missing
 

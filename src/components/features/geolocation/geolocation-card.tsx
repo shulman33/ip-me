@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import type { GeolocationData } from '@/types/ip';
 import { GeolocationPrimaryInfo } from './geolocation-primary-info';
 import { GeolocationSecondaryInfo } from './geolocation-secondary-info';
+import { LocationMapClient } from '@/components/features/map';
 
 interface GeolocationCardProps {
   /**
@@ -55,6 +56,22 @@ export function GeolocationCard({ data, className = '' }: GeolocationCardProps) 
 
           {/* Secondary location and network information */}
           <GeolocationSecondaryInfo data={data} />
+
+          {/* T033, T034: Interactive map - conditionally rendered when coordinates are available */}
+          {data.latitude !== null &&
+           data.latitude !== undefined &&
+           data.longitude !== null &&
+           data.longitude !== undefined && (
+            <>
+              {/* Divider line before map */}
+              <div className="border-t border-border" />
+
+              {/* Interactive Location Map */}
+              <div className="pt-2">
+                <LocationMapClient latitude={data.latitude} longitude={data.longitude} />
+              </div>
+            </>
+          )}
         </CardContent>
       </Card>
     </article>
