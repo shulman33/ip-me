@@ -2,16 +2,20 @@
  * IPDisplay Server Component
  * Displays visitor's IP address with version indicator and copy button
  * Server-rendered for optimal performance (no client-side API call)
+ *
+ * Falls back to client-side detection if server-side detection fails
  */
 
 import { headers } from 'next/headers';
 import { detectClientIP } from '@/lib/utils/ip-detection';
 import { formatIP } from '@/lib/utils/format-ip';
 import { CopyButton } from './copy-button';
+import { IPDetectionClient } from './ip-detection-client';
 
 /**
  * Server Component that detects and displays visitor's IP address
  * Automatically renders on page load without JavaScript
+ * Falls back to client-side detection (IPDetectionClient) on failure
  */
 export async function IPDisplay() {
   // Get request headers (must await in Next.js 15)
@@ -20,23 +24,10 @@ export async function IPDisplay() {
   // Detect client IP from headers
   const ipAddress = detectClientIP(headersList);
 
-  // Handle case where IP detection failed
+  // Fallback to client-side detection if server-side failed
+  // This enables retry logic and error handling (User Story 3)
   if (!ipAddress || !ipAddress.isValid) {
-    return (
-      <div className="flex flex-col items-center gap-4">
-        <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-          Your IP Address
-        </h1>
-        <div className="rounded-lg bg-background border border-red-500/20 px-8 py-6">
-          <p className="text-lg text-red-500">
-            Unable to detect IP address
-          </p>
-          <p className="text-sm text-muted-foreground mt-2">
-            Please check your network connection
-          </p>
-        </div>
-      </div>
-    );
+    return <IPDetectionClient autoDetect={true} />;
   }
 
   // Format IP for display

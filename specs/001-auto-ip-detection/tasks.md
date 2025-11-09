@@ -102,18 +102,18 @@ This is a Next.js 15 App Router web application with the following structure:
 
 ### Implementation for User Story 3
 
-- [ ] T027 [P] [US3] Create API route handler GET /api/detect-ip/route.ts for client-side IP validation and fallback detection
-- [ ] T028 [P] [US3] Implement IPstack API integration with server-side API key protection in app/api/detect-ip/route.ts
-- [ ] T029 [US3] Add Upstash Redis caching layer with 5-minute TTL (cache key format: ip-lookup:${ipAddress})
-- [ ] T030 [US3] Implement rate limiting middleware (10 requests/minute per IP) using Next.js Edge Middleware
-- [ ] T031 [US3] Add Zod validation for API responses using ipDetectionResultSchema
-- [ ] T032 [US3] Implement error response handling (400 invalid IP, 429 rate limited, 500 service unavailable) with apiErrorSchema
-- [ ] T033 [US3] Create retry logic with exponential backoff (1s, 2s, 4s delays, max 3 retries)
-- [ ] T034 [US3] Add fallback detection flow: headers → client API call → IPstack API
-- [ ] T035 [US3] Update IPDisplay component to show user-friendly error messages with retry button
-- [ ] T036 [US3] Implement "Try Again" button that triggers re-detection via API route
-- [ ] T037 [US3] Add timeout handling for detections exceeding 5 seconds with "Detection in progress..." message
-- [ ] T038 [US3] Handle max retry failures (3 failures) with alternative guidance message
+- [X] T027 [P] [US3] Create API route handler GET /api/detect-ip/route.ts for client-side IP validation and fallback detection
+- [X] T028 [P] [US3] Implement IPstack API integration with server-side API key protection in app/api/detect-ip/route.ts
+- [X] T029 [US3] Add Upstash Redis caching layer with 5-minute TTL (cache key format: ip-lookup:${ipAddress})
+- [X] T030 [US3] Implement rate limiting middleware (10 requests/minute per IP) using Next.js Edge Middleware
+- [X] T031 [US3] Add Zod validation for API responses using ipDetectionResultSchema
+- [X] T032 [US3] Implement error response handling (400 invalid IP, 429 rate limited, 500 service unavailable) with apiErrorSchema
+- [X] T033 [US3] Create retry logic with exponential backoff (1s, 2s, 4s delays, max 3 retries)
+- [X] T034 [US3] Add fallback detection flow: headers → client API call → IPstack API
+- [X] T035 [US3] Update IPDisplay component to show user-friendly error messages with retry button
+- [X] T036 [US3] Implement "Try Again" button that triggers re-detection via API route
+- [X] T037 [US3] Add timeout handling for detections exceeding 5 seconds with "Detection in progress..." message
+- [X] T038 [US3] Handle max retry failures (3 failures) with alternative guidance message
 
 **Checkpoint**: All user stories should now be independently functional - IP detection works with graceful error handling and retry capabilities
 
