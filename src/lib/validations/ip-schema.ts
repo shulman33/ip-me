@@ -70,6 +70,17 @@ export const detectionStateSchema = z.object({
 });
 
 /**
+ * Timezone data schema from IPstack API
+ */
+export const timezoneDataSchema = z.object({
+  id: z.string().min(1),                                // IANA timezone (e.g., "America/New_York")
+  offset: z.number().int().min(-43200).max(50400).optional(), // UTC offset in seconds
+  code: z.string().min(3).max(5).optional(),            // Timezone code (EST, PDT)
+  gmt_offset: z.number().int().min(-12).max(14).optional(), // GMT offset in hours
+  is_daylight_saving: z.boolean().optional(),
+});
+
+/**
  * IP Detection Result schema from API
  * Includes geolocation and network data from IPstack
  */
@@ -93,10 +104,18 @@ export const ipDetectionResultSchema = z.object({
   connection_type: z.string().optional(),
   organization: z.string().optional(),
 
+  // Timezone data (optional)
+  timezone: timezoneDataSchema.optional(),
+
   // Metadata (required)
   cached: z.boolean(),
   timestamp: z.string().datetime(), // ISO 8601 format
 });
+
+/**
+ * Geolocation data schema (alias for IP detection result)
+ */
+export const geolocationDataSchema = ipDetectionResultSchema;
 
 /**
  * API Error response schema
@@ -114,7 +133,9 @@ export type IPVersion = z.infer<typeof ipVersionSchema>;
 export type IPAddress = z.infer<typeof ipAddressSchema>;
 export type DetectionStatus = z.infer<typeof detectionStatusSchema>;
 export type DetectionState = z.infer<typeof detectionStateSchema>;
+export type TimezoneData = z.infer<typeof timezoneDataSchema>;
 export type IPDetectionResult = z.infer<typeof ipDetectionResultSchema>;
+export type GeolocationData = z.infer<typeof geolocationDataSchema>;
 export type APIError = z.infer<typeof apiErrorSchema>;
 
 /**

@@ -11,6 +11,8 @@ import { detectClientIP } from '@/lib/utils/ip-detection';
 import { formatIP } from '@/lib/utils/format-ip';
 import { CopyButton } from './copy-button';
 import { IPDetectionClient } from './ip-detection-client';
+import { GeolocationCard } from '@/components/features/geolocation/geolocation-card';
+import { getIPDetectionResult } from '@/lib/services/geolocation';
 
 /**
  * Server Component that detects and displays visitor's IP address
@@ -34,6 +36,9 @@ export async function IPDisplay() {
 
   // Format IP for display
   const formattedIP = formatIP(ipAddress.value, ipAddress.version);
+
+  // Fetch geolocation data using the shared service
+  const geolocationData = await getIPDetectionResult(ipAddress.value);
 
   return (
     <div className="flex flex-col items-center gap-6">
@@ -61,6 +66,13 @@ export async function IPDisplay() {
           <CopyButton text={ipAddress.value} />
         </div>
       </div>
+
+      {/* Geolocation Data Card */}
+      {geolocationData && (
+        <div className="w-full max-w-2xl">
+          <GeolocationCard data={geolocationData} />
+        </div>
+      )}
 
       {/* Privacy Notice */}
       <p className="text-sm text-muted-foreground text-center max-w-md">

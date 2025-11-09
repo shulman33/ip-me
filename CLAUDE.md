@@ -3,6 +3,8 @@
 Auto-generated from all feature plans. Last updated: 2025-11-08
 
 ## Active Technologies
+- TypeScript 5.x with Next.js 16.0.1 (App Router), React 19.2.0 (002-geolocation-display)
+- Upstash Redis (serverless KV store) - response caching only, no persistent data (002-geolocation-display)
 
 - TypeScript 5.x with Next.js 15 (App Router) + Next.js 15, React 19, Zod 3.x, Tailwind CSS 4, shadcn/ui, IPstack API (001-auto-ip-detection)
 
@@ -22,6 +24,7 @@ npm test && npm run lint
 TypeScript 5.x with Next.js 15 (App Router): Follow standard conventions
 
 ## Recent Changes
+- 002-geolocation-display: Added TypeScript 5.x with Next.js 16.0.1 (App Router), React 19.2.0
 
 - 001-auto-ip-detection: Added TypeScript 5.x with Next.js 15 (App Router) + Next.js 15, React 19, Zod 3.x, Tailwind CSS 4, shadcn/ui, IPstack API
 

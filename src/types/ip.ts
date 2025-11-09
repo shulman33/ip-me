@@ -33,6 +33,17 @@ export interface DetectionState {
 }
 
 /**
+ * Timezone information from IPstack API
+ */
+export interface TimezoneData {
+  id: string;                     // IANA timezone identifier (e.g., "America/New_York")
+  offset?: number;                // UTC offset in seconds (e.g., -18000 = -5 hours)
+  code?: string;                  // Timezone abbreviation (e.g., "EST")
+  gmt_offset?: number;            // GMT offset in hours (e.g., -5)
+  is_daylight_saving?: boolean;   // DST active flag
+}
+
+/**
  * Complete result from IP detection API including geolocation data
  */
 export interface IPDetectionResult {
@@ -55,10 +66,19 @@ export interface IPDetectionResult {
   connection_type?: string;   // "cable", "dsl", "cellular", etc.
   organization?: string;      // Organization name
 
+  // Timezone data (optional)
+  timezone?: TimezoneData;    // Timezone information
+
   // Metadata (required)
   cached: boolean;            // True if from Vercel KV cache
   timestamp: string;          // ISO 8601 timestamp
 }
+
+/**
+ * Extended geolocation data with all available fields
+ * Alias for IPDetectionResult to maintain clarity in component props
+ */
+export type GeolocationData = IPDetectionResult;
 
 /**
  * Clipboard copy operation state

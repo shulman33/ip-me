@@ -20,6 +20,7 @@ import { useIPDetection } from '@/hooks/use-ip-detection';
 import { formatIP } from '@/lib/utils/format-ip';
 import { CopyButton } from './copy-button';
 import { Button } from '@/components/ui/button';
+import { GeolocationCard } from '@/components/features/geolocation/geolocation-card';
 
 /**
  * Props for IPDetectionClient component
@@ -245,6 +246,11 @@ export function IPDetectionClient({
               </div>
             )}
           </div>
+        </div>
+
+        {/* Geolocation Data Card */}
+        <div className="w-full max-w-2xl">
+          <GeolocationCard data={data} />
         </div>
 
         {/* Privacy Notice */}
