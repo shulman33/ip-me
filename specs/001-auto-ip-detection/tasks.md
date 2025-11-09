@@ -123,14 +123,14 @@ This is a Next.js 15 App Router web application with the following structure:
 
 **Purpose**: Improvements that affect multiple user stories and final production readiness
 
-- [ ] T039 [P] Add Next.js Metadata API configuration for SEO (title, description, Open Graph tags) in app/layout.tsx
-- [ ] T040 [P] Create JSON-LD structured data for WebSite schema in app/page.tsx
-- [ ] T041 [P] Configure Content Security Policy headers in next.config.js
+- [X] T039 [P] Add Next.js Metadata API configuration for SEO (title, description, Open Graph tags) in app/layout.tsx
+- [X] T040 [P] Create JSON-LD structured data for WebSite schema in app/page.tsx
+- [X] T041 [P] Configure Content Security Policy headers in next.config.js
 - [ ] T042 [P] Add privacy notice text below IP display explaining 5-minute caching in IPDisplay component
-- [ ] T043 [P] Optimize font loading with next/font (Inter with display:swap) in app/layout.tsx
-- [ ] T044 [P] Update site metadata configuration in config/site.ts
+- [X] T043 [P] Optimize font loading with next/font (Inter with display:swap) in app/layout.tsx
+- [X] T044 [P] Update site metadata configuration in config/site.ts
 - [ ] T045 Add code comments and JSDoc documentation across all components and utilities
-- [ ] T046 Verify Core Web Vitals compliance (LCP <2.5s, FID <100ms, CLS <0.1) using Lighthouse
+- [X] T046 Verify Core Web Vitals compliance (LCP <2.5s, FID <100ms, CLS <0.1) using Lighthouse
 - [ ] T047 Run accessibility audit with focus on keyboard navigation and screen reader support
 - [ ] T048 Verify bundle size under 100KB total JS (<50KB for feature code) using next build --analyze
 - [ ] T049 Test IPv4 and IPv6 address display formatting across different formats

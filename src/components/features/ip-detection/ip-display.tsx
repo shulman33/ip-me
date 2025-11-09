@@ -41,10 +41,10 @@ export async function IPDisplay() {
       </h1>
 
       {/* IP Display Card */}
-      <div className="rounded-lg bg-background border border-border px-8 py-6 shadow-lg min-w-[300px]">
+      <div className="rounded-lg bg-card border border-border px-8 py-6 shadow-lg min-w-[300px]">
         <div className="flex flex-col items-center gap-4">
           {/* IP Address in monospace font */}
-          <code className="text-3xl font-mono font-semibold text-foreground tracking-wide">
+          <code className="text-3xl font-mono font-semibold text-card-foreground tracking-wide">
             {formattedIP}
           </code>
 
