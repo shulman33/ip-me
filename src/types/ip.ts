@@ -33,6 +33,17 @@ export interface DetectionState {
 }
 
 /**
+ * Timezone information from IPstack API
+ */
+export interface TimezoneData {
+  id: string;                          // IANA timezone identifier (e.g., "America/New_York")
+  offset?: number | null;              // UTC offset in seconds (e.g., -18000 = -5 hours)
+  code?: string | null;                // Timezone abbreviation (e.g., "EST")
+  gmt_offset?: number | null;          // GMT offset in hours (e.g., -5)
+  is_daylight_saving?: boolean | null; // DST active flag
+}
+
+/**
  * Complete result from IP detection API including geolocation data
  */
 export interface IPDetectionResult {
@@ -41,24 +52,33 @@ export interface IPDetectionResult {
   version: IPVersion;
 
   // Geolocation data (optional - from IPstack API)
-  country_code?: string;      // ISO 3166-1 alpha-2 (e.g., "US")
-  country_name?: string;      // Full country name
-  region_code?: string;       // ISO 3166-2 region code
-  region_name?: string;       // Full region/state name
-  city?: string;              // City name
-  zip?: string;               // Postal code
-  latitude?: number;          // -90 to 90
-  longitude?: number;         // -180 to 180
+  country_code?: string | null;      // ISO 3166-1 alpha-2 (e.g., "US")
+  country_name?: string | null;      // Full country name
+  region_code?: string | null;       // ISO 3166-2 region code
+  region_name?: string | null;       // Full region/state name
+  city?: string | null;              // City name
+  zip?: string | null;               // Postal code
+  latitude?: number | null;          // -90 to 90
+  longitude?: number | null;         // -180 to 180
 
   // Network data (optional)
-  isp?: string;               // Internet Service Provider
-  connection_type?: string;   // "cable", "dsl", "cellular", etc.
-  organization?: string;      // Organization name
+  isp?: string | null;               // Internet Service Provider
+  connection_type?: string | null;   // "cable", "dsl", "cellular", etc.
+  organization?: string | null;      // Organization name
+
+  // Timezone data (optional)
+  timezone?: TimezoneData | null;    // Timezone information
 
   // Metadata (required)
   cached: boolean;            // True if from Vercel KV cache
   timestamp: string;          // ISO 8601 timestamp
 }
+
+/**
+ * Extended geolocation data with all available fields
+ * Alias for IPDetectionResult to maintain clarity in component props
+ */
+export type GeolocationData = IPDetectionResult;
 
 /**
  * Clipboard copy operation state
