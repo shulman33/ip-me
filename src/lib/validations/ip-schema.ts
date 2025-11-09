@@ -74,10 +74,10 @@ export const detectionStateSchema = z.object({
  */
 export const timezoneDataSchema = z.object({
   id: z.string().min(1),                                // IANA timezone (e.g., "America/New_York")
-  offset: z.number().int().min(-43200).max(50400).optional(), // UTC offset in seconds
-  code: z.string().min(3).max(5).optional(),            // Timezone code (EST, PDT)
-  gmt_offset: z.number().int().min(-12).max(14).optional(), // GMT offset in hours
-  is_daylight_saving: z.boolean().optional(),
+  offset: z.number().int().min(-43200).max(50400).nullable().optional(), // UTC offset in seconds
+  code: z.string().min(3).max(5).nullable().optional(),            // Timezone code (EST, PDT)
+  gmt_offset: z.number().int().min(-12).max(14).nullable().optional(), // GMT offset in hours
+  is_daylight_saving: z.boolean().nullable().optional(),
 });
 
 /**
@@ -90,19 +90,19 @@ export const ipDetectionResultSchema = z.object({
   version: ipVersionSchema,
 
   // Geolocation data (optional - may not be available for all IPs)
-  country_code: z.string().length(2).optional(),
-  country_name: z.string().optional(),
-  region_code: z.string().optional(),
-  region_name: z.string().optional(),
-  city: z.string().optional(),
-  zip: z.string().optional(),
-  latitude: z.number().min(-90).max(90).optional(),
-  longitude: z.number().min(-180).max(180).optional(),
+  country_code: z.string().length(2).nullable().optional(),
+  country_name: z.string().nullable().optional(),
+  region_code: z.string().nullable().optional(),
+  region_name: z.string().nullable().optional(),
+  city: z.string().nullable().optional(),
+  zip: z.string().nullable().optional(),
+  latitude: z.number().min(-90).max(90).nullable().optional(),
+  longitude: z.number().min(-180).max(180).nullable().optional(),
 
   // Network data (optional)
-  isp: z.string().optional(),
-  connection_type: z.string().optional(),
-  organization: z.string().optional(),
+  isp: z.string().nullable().optional(),
+  connection_type: z.string().nullable().optional(),
+  organization: z.string().nullable().optional(),
 
   // Timezone data (optional)
   timezone: timezoneDataSchema.optional(),

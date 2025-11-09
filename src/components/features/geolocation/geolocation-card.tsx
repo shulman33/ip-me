@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import type { GeolocationData } from '@/types/ip';
 import { GeolocationPrimaryInfo } from './geolocation-primary-info';
+import { GeolocationSecondaryInfo } from './geolocation-secondary-info';
 
 interface GeolocationCardProps {
   /**
@@ -17,11 +18,11 @@ interface GeolocationCardProps {
 /**
  * GeolocationCard Component
  *
- * Server Component container that wraps geolocation primary information
+ * Server Component container that wraps geolocation information
  * in a styled Card component with appropriate badges and layout.
  *
- * This is the Phase 3 (User Story 1) implementation, showing only primary
- * location data (IP, country, city). Secondary data will be added in Phase 4.
+ * Displays both primary location data (IP, country, city) and secondary
+ * data (state, postal code, coordinates, ISP, timezone) in organized sections.
  *
  * @param props - Component properties
  * @returns Server Component with geolocation card layout
@@ -44,8 +45,15 @@ export function GeolocationCard({ data, className = '' }: GeolocationCardProps) 
           </div>
         </div>
       </CardHeader>
-      <CardContent>
+      <CardContent className="space-y-6">
+        {/* Primary location information */}
         <GeolocationPrimaryInfo data={data} />
+
+        {/* Divider line */}
+        <div className="border-t border-border" />
+
+        {/* Secondary location and network information */}
+        <GeolocationSecondaryInfo data={data} />
       </CardContent>
     </Card>
   );

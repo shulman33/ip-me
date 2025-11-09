@@ -50,10 +50,10 @@ export function getCountryFlag(countryCode: string | undefined): string {
  * formatCoordinates(undefined, undefined) → 'Coordinates unavailable'
  */
 export function formatCoordinates(
-  latitude: number | undefined,
-  longitude: number | undefined
+  latitude: number | null | undefined,
+  longitude: number | null | undefined
 ): string {
-  if (latitude === undefined || longitude === undefined) {
+  if (latitude === undefined || latitude === null || longitude === undefined || longitude === null) {
     return 'Coordinates unavailable';
   }
 
@@ -80,7 +80,7 @@ export function formatCoordinates(
  * formatTimezone({ id: 'Asia/Tokyo', gmt_offset: 9 }) → 'Asia/Tokyo (UTC+9)'
  * formatTimezone(undefined) → 'Timezone unavailable'
  */
-export function formatTimezone(timezone: TimezoneData | undefined): string {
+export function formatTimezone(timezone: TimezoneData | null | undefined): string {
   if (!timezone || !timezone.id) {
     return 'Timezone unavailable';
   }
@@ -88,12 +88,12 @@ export function formatTimezone(timezone: TimezoneData | undefined): string {
   let formatted = timezone.id;
 
   // Prefer offset (seconds) over gmt_offset (hours)
-  if (timezone.offset !== undefined) {
+  if (timezone.offset !== undefined && timezone.offset !== null) {
     // Convert seconds to hours
     const offsetHours = timezone.offset / 3600;
     const sign = offsetHours >= 0 ? '+' : '';
     formatted += ` (UTC${sign}${offsetHours})`;
-  } else if (timezone.gmt_offset !== undefined) {
+  } else if (timezone.gmt_offset !== undefined && timezone.gmt_offset !== null) {
     const sign = timezone.gmt_offset >= 0 ? '+' : '';
     formatted += ` (UTC${sign}${timezone.gmt_offset})`;
   }

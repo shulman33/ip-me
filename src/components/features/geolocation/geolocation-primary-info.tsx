@@ -29,14 +29,14 @@ export function GeolocationPrimaryInfo({
   data,
   className = '',
 }: GeolocationPrimaryInfoProps) {
-  // Get flag emoji (or globe if country code missing)
-  const flag = getCountryFlag(data.country_code);
+  // Get flag emoji (or globe if country code missing or null)
+  const flag = getCountryFlag(data.country_code ?? undefined);
 
-  // Handle missing country name
-  const countryName = data.country_name || 'Unknown Country';
+  // Handle missing country name (null or undefined)
+  const countryName = data.country_name ?? 'Unknown Country';
 
-  // Handle missing city
-  const cityDisplay = data.city || 'City unavailable';
+  // Handle missing city (null or undefined)
+  const cityDisplay = data.city ?? 'City unavailable';
 
   return (
     <div className={`space-y-3 ${className}`}>
