@@ -1,0 +1,276 @@
+openapi: 3.1.0
+info:
+  title: IP Detection API
+  version: 1.0.0
+  description: |
+    API endpoint for detecting and validating IP addresses with geolocation data.
+    Used as fallback when server-side header detection unavailable or for client-side validation.
+
+servers:
+  - url: http://localhost:3000/api
+    description: Local development
+  - url: https://ip-me.vercel.app/api
+    description: Production (Vercel)
+
+paths:
+  /detect-ip:
+    get:
+      summary: Detect or validate IP address
+      description: |
+        Detects the client's IP address from request headers or validates a provided IP.
+        Returns comprehensive geolocation data powered by IPstack API with 5-minute caching.
+      operationId: detectIP
+      tags:
+        - IP Detection
+      parameters:
+        - name: ip
+          in: query
+          description: |
+            Optional IP address to validate. If not provided, detects from request headers (X-Forwarded-For or CF-Connecting-IP).
+          required: false
+          schema:
+            type: string
+            format: ipv4 | ipv6
+            examples:
+              - "192.168.1.1"
+              - "2001:db8::1"
+      responses:
+        '200':
+          description: IP detection successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPDetectionResult'
+              examples:
+                ipv4_success:
+                  summary: IPv4 detection with full geolocation
+                  value:
+                    ip: "8.8.8.8"
+                    version: "IPv4"
+                    country_code: "US"
+                    country_name: "United States"
+                    region_code: "CA"
+                    region_name: "California"
+                    city: "Mountain View"
+                    zip: "94043"
+                    latitude: 37.4056
+                    longitude: -122.0775
+                    isp: "Google LLC"
+                    connection_type: "corporate"
+                    organization: "Google LLC"
+                    cached: false
+                    timestamp: "2025-11-08T10:30:00.000Z"
+                ipv6_success:
+                  summary: IPv6 detection with limited geolocation
+                  value:
+                    ip: "2001:4860:4860::8888"
+                    version: "IPv6"
+                    country_code: "US"
+                    country_name: "United States"
+                    isp: "Google LLC"
+                    cached: true
+                    timestamp: "2025-11-08T10:35:00.000Z"
+                private_ip:
+                  summary: Private IP (no geolocation)
+                  value:
+                    ip: "192.168.1.1"
+                    version: "IPv4"
+                    cached: false
+                    timestamp: "2025-11-08T10:32:00.000Z"
+        '400':
+          description: Invalid IP address format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+              examples:
+                invalid_format:
+                  summary: Malformed IP address
+                  value:
+                    error: "Invalid IP address format"
+                    code: "invalid_ip"
+                    details:
+                      provided: "999.999.999.999"
+                      expected: "Valid IPv4 or IPv6 address"
+                no_ip:
+                  summary: No IP provided or detected
+                  value:
+                    error: "No IP address provided and unable to detect from headers"
+                    code: "no_ip_provided"
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+              examples:
+                rate_limited:
+                  summary: Too many requests
+                  value:
+                    error: "Rate limit exceeded. Please try again in 1 minute."
+                    code: "rate_limited"
+                    details:
+                      limit: 10
+                      window: "60s"
+                      retry_after: 47
+        '500':
+          description: Internal server error or external API failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIError'
+              examples:
+                service_unavailable:
+                  summary: IPstack API down
+                  value:
+                    error: "IP detection service temporarily unavailable"
+                    code: "service_unavailable"
+                validation_failed:
+                  summary: Response validation error
+                  value:
+                    error: "Failed to validate API response"
+                    code: "validation_failed"
+
+components:
+  schemas:
+    IPDetectionResult:
+      type: object
+      required:
+        - ip
+        - version
+        - cached
+        - timestamp
+      properties:
+        ip:
+          type: string
+          format: ipv4 | ipv6
+          description: The detected or validated IP address
+          examples:
+            - "192.168.1.1"
+            - "2001:db8::1"
+        version:
+          type: string
+          enum: [IPv4, IPv6]
+          description: IP address version
+        country_code:
+          type: string
+          minLength: 2
+          maxLength: 2
+          description: ISO 3166-1 alpha-2 country code
+          examples:
+            - "US"
+            - "GB"
+            - "JP"
+        country_name:
+          type: string
+          description: Full country name
+          examples:
+            - "United States"
+            - "United Kingdom"
+        region_code:
+          type: string
+          description: ISO 3166-2 region/state code
+          examples:
+            - "CA"
+            - "NY"
+        region_name:
+          type: string
+          description: Full region/state name
+          examples:
+            - "California"
+            - "New York"
+        city:
+          type: string
+          description: City name
+          examples:
+            - "Mountain View"
+            - "New York City"
+        zip:
+          type: string
+          description: Postal/ZIP code
+          examples:
+            - "94043"
+            - "10001"
+        latitude:
+          type: number
+          format: float
+          minimum: -90
+          maximum: 90
+          description: Latitude coordinate
+          examples:
+            - 37.4056
+        longitude:
+          type: number
+          format: float
+          minimum: -180
+          maximum: 180
+          description: Longitude coordinate
+          examples:
+            - -122.0775
+        isp:
+          type: string
+          description: Internet Service Provider name
+          examples:
+            - "Google LLC"
+            - "Comcast Cable"
+        connection_type:
+          type: string
+          description: Type of internet connection
+          enum:
+            - cable
+            - dsl
+            - cellular
+            - corporate
+            - dialup
+          examples:
+            - "cable"
+            - "corporate"
+        organization:
+          type: string
+          description: Organization name associated with the IP
+          examples:
+            - "Google LLC"
+        cached:
+          type: boolean
+          description: Whether this result was retrieved from cache (true) or fresh API call (false)
+        timestamp:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of detection
+          examples:
+            - "2025-11-08T10:30:00.000Z"
+
+    APIError:
+      type: object
+      required:
+        - error
+        - code
+      properties:
+        error:
+          type: string
+          description: User-friendly error message
+          examples:
+            - "Invalid IP address format"
+            - "Rate limit exceeded"
+        code:
+          type: string
+          enum:
+            - invalid_ip
+            - no_ip_provided
+            - rate_limited
+            - service_unavailable
+            - validation_failed
+          description: Machine-readable error code
+        details:
+          type: object
+          description: Additional error context (optional)
+          additionalProperties: true
+          examples:
+            - provided: "999.999.999.999"
+              expected: "Valid IPv4 or IPv6 address"
+
+  securitySchemes: {}
+
+tags:
+  - name: IP Detection
+    description: IP address detection and geolocation operations
