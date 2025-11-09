@@ -1,12 +1,13 @@
 /**
  * IPDisplay Server Component
- * Displays visitor's IP address with version indicator
+ * Displays visitor's IP address with version indicator and copy button
  * Server-rendered for optimal performance (no client-side API call)
  */
 
 import { headers } from 'next/headers';
 import { detectClientIP } from '@/lib/utils/ip-detection';
 import { formatIP } from '@/lib/utils/format-ip';
+import { CopyButton } from './copy-button';
 
 /**
  * Server Component that detects and displays visitor's IP address
@@ -50,7 +51,7 @@ export async function IPDisplay() {
 
       {/* IP Display Card */}
       <div className="rounded-lg bg-background border border-border px-8 py-6 shadow-lg min-w-[300px]">
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex flex-col items-center gap-4">
           {/* IP Address in monospace font */}
           <code className="text-3xl font-mono font-semibold text-foreground tracking-wide">
             {formattedIP}
@@ -62,6 +63,9 @@ export async function IPDisplay() {
               {ipAddress.version}
             </span>
           </div>
+
+          {/* Copy Button - Client Component for interactivity */}
+          <CopyButton text={ipAddress.value} />
         </div>
       </div>
 
