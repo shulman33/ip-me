@@ -23,10 +23,12 @@ export async function IPDisplay() {
 
   // Detect client IP from headers
   const ipAddress = detectClientIP(headersList);
+  console.log('Detected client IP:', ipAddress);
 
   // Fallback to client-side detection if server-side failed
   // This enables retry logic and error handling (User Story 3)
   if (!ipAddress || !ipAddress.isValid) {
+    console.log('Server-side IP detection failed, falling back to client-side.');
     return <IPDetectionClient autoDetect={true} />;
   }
 
