@@ -62,13 +62,13 @@ This is a Next.js 15 App Router web application with the following structure:
 
 ### Implementation for User Story 1
 
-- [ ] T013 [P] [US1] Create Server Component IPDisplay with server-side IP detection from headers in components/features/ip-detection/ip-display.tsx
-- [ ] T014 [P] [US1] Implement server-side IP extraction utility reading X-Forwarded-For and CF-Connecting-IP headers in lib/utils/ip-detection.ts
-- [ ] T015 [US1] Update homepage app/page.tsx to use headers() from next/headers and render IPDisplay Server Component
-- [ ] T016 [US1] Add loading skeleton UI with Suspense fallback for IP detection in app/page.tsx
-- [ ] T017 [US1] Style IP display with monospace font (font-mono), dark background (#0a0a0a), and responsive layout using Tailwind CSS
-- [ ] T018 [US1] Add proper semantic HTML structure with H1 heading and code tag for IP display
-- [ ] T019 [US1] Create error boundary app/error.tsx for feature-level error handling
+- [X] T013 [P] [US1] Create Server Component IPDisplay with server-side IP detection from headers in components/features/ip-detection/ip-display.tsx
+- [X] T014 [P] [US1] Implement server-side IP extraction utility reading X-Forwarded-For and CF-Connecting-IP headers in lib/utils/ip-detection.ts
+- [X] T015 [US1] Update homepage app/page.tsx to use headers() from next/headers and render IPDisplay Server Component
+- [X] T016 [US1] Add loading skeleton UI with Suspense fallback for IP detection in app/page.tsx
+- [X] T017 [US1] Style IP display with monospace font (font-mono), dark background (#0a0a0a), and responsive layout using Tailwind CSS
+- [X] T018 [US1] Add proper semantic HTML structure with H1 heading and code tag for IP display
+- [X] T019 [US1] Create error boundary app/error.tsx for feature-level error handling
 
 **Checkpoint**: At this point, User Story 1 should be fully functional - IP displays automatically on page load with proper loading and error states
 
