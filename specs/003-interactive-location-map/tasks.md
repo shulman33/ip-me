@@ -108,14 +108,14 @@
 
 ### Implementation for User Story 3
 
-- [ ] T044 [US3] Verify dark-v11 Mapbox style is applied correctly in location-map.tsx
-- [ ] T045 [US3] Create custom CSS overrides for NavigationControl in globals.css or component styles
-- [ ] T046 [US3] Style zoom control buttons with dark background (rgba(26, 26, 26, 0.8)) and glass-morphism effect
-- [ ] T047 [US3] Add hover states for controls using existing --color-green with 10% opacity
-- [ ] T048 [US3] Ensure map container border-radius matches existing card components (0.5rem)
-- [ ] T049 [US3] Verify marker green color (#00ff88) contrasts properly with dark map tiles
-- [ ] T050 [US3] Test visual consistency across different map zoom levels
-- [ ] T051 [US3] Verify no color conflicts when map is positioned next to geolocation cards
+- [X] T044 [US3] Verify dark-v11 Mapbox style is applied correctly in location-map.tsx
+- [X] T045 [US3] Create custom CSS overrides for NavigationControl in globals.css or component styles
+- [X] T046 [US3] Style zoom control buttons with dark background (rgba(26, 26, 26, 0.8)) and glass-morphism effect
+- [X] T047 [US3] Add hover states for controls using existing --color-green with 10% opacity
+- [X] T048 [US3] Ensure map container border-radius matches existing card components (0.5rem)
+- [X] T049 [US3] Verify marker green color (#00ff88) contrasts properly with dark map tiles
+- [X] T050 [US3] Test visual consistency across different map zoom levels
+- [X] T051 [US3] Verify no color conflicts when map is positioned next to geolocation cards
 
 **Checkpoint**: All user stories should now be independently functional with polished dark theme styling
 
