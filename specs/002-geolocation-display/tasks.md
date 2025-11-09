@@ -139,13 +139,13 @@
 - [ ] T065 [P] Verify WCAG AA contrast ratios (4.5:1 minimum) for all text elements in dark theme using browser DevTools or axe extension
 - [ ] T066 [P] Test keyboard navigation: ensure retry button and all interactive elements are keyboard accessible (Tab, Enter, Escape)
 - [ ] T067 [P] Test screen reader support: verify flag emoji has aria-label with country name, loading states announced via aria-live="polite"
-- [ ] T068 [P] Add semantic HTML improvements: use `<article>` for cards, `<dl>` for data key-value pairs
+- [X] T068 [P] Add semantic HTML improvements: use `<article>` for cards, `<dl>` for data key-value pairs
 - [ ] T069 Run Lighthouse CI audit to verify Core Web Vitals: LCP <2.5s, FID <100ms, CLS <0.1
 - [ ] T070 Verify Redis cache hit rate in server logs (target >80% cache hits) using grep "Cache HIT" commands
 - [ ] T071 Monitor IPstack API usage to ensure <1000 calls/month (free tier limit) using grep "Cache MISS" commands
 - [ ] T072 Test responsive layout on actual mobile devices (iOS Safari, Android Chrome)
 - [ ] T073 Verify skeleton components prevent layout shift (CLS <0.1) by matching final layout dimensions
-- [ ] T074 Update /CLAUDE.md with new technologies: TypeScript 5.x with Next.js 16.0.1, React 19.2.0, shadcn/ui components, Upstash Redis caching
+- [X] T074 Update /CLAUDE.md with new technologies: TypeScript 5.x with Next.js 16.0.1, React 19.2.0, shadcn/ui components, Upstash Redis caching
 - [ ] T075 Add inline code comments for complex logic (flag emoji conversion, coordinate formatting, timezone parsing)
 - [ ] T076 Validate implementation against quickstart.md checklist (all phases complete)
 - [ ] T077 Create pull request with detailed description of all three user stories implemented

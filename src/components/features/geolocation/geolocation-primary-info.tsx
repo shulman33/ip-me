@@ -39,11 +39,11 @@ export function GeolocationPrimaryInfo({
   const cityDisplay = data.city ?? 'City unavailable';
 
   return (
-    <div className={`space-y-3 ${className}`}>
+    <dl className={`space-y-3 ${className}`}>
       {/* IP Address */}
       <div className="space-y-1">
-        <p className="text-sm text-muted-foreground">Your IP Address</p>
-        <p className="text-2xl font-bold tracking-tight">{data.ip}</p>
+        <dt className="text-sm text-muted-foreground">Your IP Address</dt>
+        <dd className="text-2xl font-bold tracking-tight">{data.ip}</dd>
       </div>
 
       {/* Country with flag */}
@@ -56,26 +56,26 @@ export function GeolocationPrimaryInfo({
           {flag}
         </span>
         <div className="space-y-0.5">
-          <p className="text-xl font-semibold leading-none">{countryName}</p>
+          <dd className="text-xl font-semibold leading-none">{countryName}</dd>
           {data.country_code && (
-            <p className="text-xs text-muted-foreground uppercase">
+            <dd className="text-xs text-muted-foreground uppercase">
               {data.country_code}
-            </p>
+            </dd>
           )}
         </div>
       </div>
 
       {/* City */}
       <div className="space-y-1">
-        <p className="text-sm text-muted-foreground">City</p>
-        <p
+        <dt className="text-sm text-muted-foreground">City</dt>
+        <dd
           className={`text-base font-medium ${
             !data.city ? 'text-muted-foreground italic' : ''
           }`}
         >
           {cityDisplay}
-        </p>
+        </dd>
       </div>
-    </div>
+    </dl>
   );
 }

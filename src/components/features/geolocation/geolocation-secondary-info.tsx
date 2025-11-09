@@ -85,24 +85,24 @@ export function GeolocationSecondaryInfo({
   }
 
   return (
-    <div className={`grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 ${className}`}>
+    <dl className={`grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 ${className}`}>
       {fields.map((field, index) => {
         if (!field) return null;
 
         return (
           <div key={index} className="space-y-1">
-            <p className="text-sm text-muted-foreground">{field.label}</p>
-            <div className="flex items-baseline gap-2">
-              <p className="text-base font-medium">{field.value}</p>
+            <dt className="text-sm text-muted-foreground">{field.label}</dt>
+            <dd className="flex items-baseline gap-2">
+              <span className="text-base font-medium">{field.value}</span>
               {field.showCode && (
-                <p className="text-xs text-muted-foreground uppercase">
+                <span className="text-xs text-muted-foreground uppercase">
                   {field.showCode}
-                </p>
+                </span>
               )}
-            </div>
+            </dd>
           </div>
         );
       })}
-    </div>
+    </dl>
   );
 }

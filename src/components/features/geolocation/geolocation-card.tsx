@@ -29,32 +29,34 @@ interface GeolocationCardProps {
  */
 export function GeolocationCard({ data, className = '' }: GeolocationCardProps) {
   return (
-    <Card className={`w-full ${className}`}>
-      <CardHeader className="pb-3">
-        <div className="flex items-center justify-between">
-          <CardTitle className="text-xl">Your Location</CardTitle>
-          <div className="flex gap-2">
-            {data.cached && (
-              <Badge variant="outline" className="text-xs">
-                Cached
+    <article className={`w-full ${className}`}>
+      <Card>
+        <CardHeader className="pb-3">
+          <div className="flex items-center justify-between">
+            <CardTitle className="text-xl">Your Location</CardTitle>
+            <div className="flex gap-2">
+              {data.cached && (
+                <Badge variant="outline" className="text-xs">
+                  Cached
+                </Badge>
+              )}
+              <Badge variant="secondary" className="text-xs">
+                {data.version}
               </Badge>
-            )}
-            <Badge variant="secondary" className="text-xs">
-              {data.version}
-            </Badge>
+            </div>
           </div>
-        </div>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        {/* Primary location information */}
-        <GeolocationPrimaryInfo data={data} />
+        </CardHeader>
+        <CardContent className="space-y-6">
+          {/* Primary location information */}
+          <GeolocationPrimaryInfo data={data} />
 
-        {/* Divider line */}
-        <div className="border-t border-border" />
+          {/* Divider line */}
+          <div className="border-t border-border" />
 
-        {/* Secondary location and network information */}
-        <GeolocationSecondaryInfo data={data} />
-      </CardContent>
-    </Card>
+          {/* Secondary location and network information */}
+          <GeolocationSecondaryInfo data={data} />
+        </CardContent>
+      </Card>
+    </article>
   );
 }
