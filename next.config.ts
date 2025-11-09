@@ -12,11 +12,13 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval'", // unsafe-inline needed for Next.js, unsafe-eval for JSON-LD
-              "style-src 'self' 'unsafe-inline'", // unsafe-inline needed for Tailwind and shadcn/ui
-              "img-src 'self' data: https:",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://api.mapbox.com", // unsafe-inline needed for Next.js, unsafe-eval for JSON-LD + Mapbox GL JS
+              "style-src 'self' 'unsafe-inline' https://api.mapbox.com", // unsafe-inline needed for Tailwind and shadcn/ui + Mapbox styles
+              "img-src 'self' data: https: https://api.mapbox.com https://*.tiles.mapbox.com", // Mapbox map tiles
               "font-src 'self' data:",
-              "connect-src 'self' https://api.ipstack.com", // IPstack API
+              "connect-src 'self' https://api.ipstack.com https://api.mapbox.com https://events.mapbox.com", // IPstack API + Mapbox APIs
+              "worker-src 'self' blob:", // Mapbox web workers
+              "child-src blob:", // Mapbox WebGL context
               "frame-ancestors 'none'",
               "base-uri 'self'",
               "form-action 'self'",

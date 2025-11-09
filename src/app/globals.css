@@ -39,5 +39,56 @@ body {
 }
 
 .animate-glow-pulse {
-  animation: glow-pulse 2s ease-in-out;
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Mapbox GL JS Navigation Control - Dark Theme Overrides */
+/* T045, T046, T047: Custom styling for navigation controls */
+.mapboxgl-ctrl-group {
+  background: rgba(26, 26, 26, 0.8) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(64, 64, 64, 0.5) !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important;
+}
+
+.mapboxgl-ctrl-group button {
+  color: #e5e5e5 !important;
+  background: transparent !important;
+  border: none !important;
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.mapboxgl-ctrl-group button + button {
+  border-top: 1px solid rgba(64, 64, 64, 0.5) !important;
+}
+
+.mapboxgl-ctrl-group button:hover {
+  background: rgba(0, 255, 136, 0.1) !important;
+}
+
+.mapboxgl-ctrl-group button:focus {
+  outline: 2px solid rgba(0, 255, 136, 0.5);
+  outline-offset: 2px;
+}
+
+.mapboxgl-ctrl-group button:active {
+  background: rgba(0, 255, 136, 0.2) !important;
+}
+
+/* Mapbox attribution control styling */
+.mapboxgl-ctrl-attrib {
+  background: rgba(26, 26, 26, 0.8) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.mapboxgl-ctrl-attrib a {
+  color: #a3a3a3 !important;
+}
+
+.mapboxgl-ctrl-attrib a:hover {
+  color: #00ff88 !important;
 }
